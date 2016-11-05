@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="trucksaledbModelStoreContainer" CdmEntityContainer="trucksaledbEntities">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="trucksaledbModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductGroupId" ColumnName="ProductGroupId" />
+          <ScalarProperty Name="OverallDemension" ColumnName="OverallDemension" />
+          <ScalarProperty Name="InsideCargBoxDemension" ColumnName="InsideCargBoxDemension" />
+          <ScalarProperty Name="FrontRearTread" ColumnName="FrontRearTread" />
+          <ScalarProperty Name="WheelBase" ColumnName="WheelBase" />
+          <ScalarProperty Name="GroundClearance" ColumnName="GroundClearance" />
+          <ScalarProperty Name="CurbWeight" ColumnName="CurbWeight" />
+          <ScalarProperty Name="LoadWeight" ColumnName="LoadWeight" />
+          <ScalarProperty Name="GrossWeight" ColumnName="GrossWeight" />
+          <ScalarProperty Name="NumberOfSeats" ColumnName="NumberOfSeats" />
+          <ScalarProperty Name="CarEngine" ColumnName="CarEngine" />
+          <ScalarProperty Name="EnginType" ColumnName="EnginType" />
+          <ScalarProperty Name="Displacement" ColumnName="Displacement" />
+          <ScalarProperty Name="DiameterPistonTroke" ColumnName="DiameterPistonTroke" />
+          <ScalarProperty Name="MaxPowerRotationSpeed" ColumnName="MaxPowerRotationSpeed" />
+          <ScalarProperty Name="MaxTorqueRotationSpeed" ColumnName="MaxTorqueRotationSpeed" />
+          <ScalarProperty Name="Clutch" ColumnName="Clutch" />
+          <ScalarProperty Name="Manual" ColumnName="Manual" />
+          <ScalarProperty Name="StearingSystem" ColumnName="StearingSystem" />
+          <ScalarProperty Name="BrakesSystem" ColumnName="BrakesSystem" />
+          <ScalarProperty Name="Front" ColumnName="Front" />
+          <ScalarProperty Name="Rear" ColumnName="Rear" />
+          <ScalarProperty Name="FrontRear" ColumnName="FrontRear" />
+          <ScalarProperty Name="HillClimbingAbility" ColumnName="HillClimbingAbility" />
+          <ScalarProperty Name="MaximumTuringRadius" ColumnName="MaximumTuringRadius" />
+          <ScalarProperty Name="MaximumSpeed" ColumnName="MaximumSpeed" />
+          <ScalarProperty Name="CapacityFuelTank" ColumnName="CapacityFuelTank" />
+          <ScalarProperty Name="SeatBelt" ColumnName="SeatBelt" />
+          <ScalarProperty Name="LockDoor" ColumnName="LockDoor" />
+          <ScalarProperty Name="Damping" ColumnName="Damping" />
+          <ScalarProperty Name="BrakeLight" ColumnName="BrakeLight" />
+          <ScalarProperty Name="Burgalar" ColumnName="Burgalar" />
+          <ScalarProperty Name="InsideImgDir" ColumnName="InsideImgDir" />
+          <ScalarProperty Name="OutSideImgDir" ColumnName="OutSideImgDir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductGroups">
+      <EntityTypeMapping TypeName="trucksaledbModel.ProductGroup">
+        <MappingFragment StoreEntitySet="ProductGroup">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="trucksaledbModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="trucksaledbModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Vcode" ColumnName="Vcode" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

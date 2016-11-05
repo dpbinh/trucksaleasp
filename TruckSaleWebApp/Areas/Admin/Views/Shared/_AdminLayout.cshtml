@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/img/logo/icon.png" type="image/x-icon" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery-1.11.1.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/jquery.validate.min.js"></script>
+</head>
+<body>
+    @Html.Partial("Helper")
+    <div id="wrapper">
+
+        @Html.Partial("Header")
+        <div id="page-wrapper">
+
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

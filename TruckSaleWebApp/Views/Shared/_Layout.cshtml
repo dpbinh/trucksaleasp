@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/img/logo/icon.png" type="image/x-icon" />
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/ionicons.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/js/source/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Content/css/animations.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style-white.css" rel="stylesheet" />
+
+    <script src="~/Content/js/jquery-1.11.1.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/vegas/jquery.vegas.min.js"></script>
+    <script src="~/Content/js/appear.min.js"></script>
+    <script src="~/Content/js/animations.min.js"></script>
+    <script src="~/Content/js/jquery.validate.min.js"></script>
+    <script>
+			 
+			function moneyFormat(price, sign = " VNĐ ") {
+				if(price == 0){
+					return "Liên Hệ";
+				}
+			  const pieces = parseFloat(price).toFixed(2).split('')
+			  let ii = pieces.length - 3
+			  while ((ii-=3) > 0) {
+			    pieces.splice(ii, 0, ',')
+			  }
+			  return   pieces.join('') + sign
+			}
+    </script>
+</head>
+<body>
+    <div class="background-second-page"></div>
+    <div class="background-overlay-second-page"></div>
+    <!-- Header -->
+    @Html.Partial("_Header")
+    <!-- Body -->
+    @RenderBody()
+    <!-- Footer -->
+    @Html.Partial("_Footer")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

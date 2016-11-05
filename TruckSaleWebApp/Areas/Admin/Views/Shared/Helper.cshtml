@@ -1,0 +1,64 @@
+﻿<div class="modal fade" id="alert-form-show" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="alert alert-danger">
+            <h4 id="alert-title"></h4>
+            <p id="alert-message"></p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alert-form-show-success" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="alert alert-success">
+            <h4 id="success-alert-title"></h4>
+            <p id="success-alert-message"></p>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="confirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="confirm-title"> </h4>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-primary" id="confirm-yes">Có</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+	function showAlert(title, message){
+		$('#alert-title').html(title);
+		$('#alert-message').html(message);
+		$('#alert-form-show').modal('show');
+	}
+
+	function showSuccessAlert(title, message){
+		$('#success-alert-title').html(title);
+		$('#success-alert-message').html(message);
+		$('#alert-form-show-success').modal('show');
+	}
+
+	function confirm(title, message, completed){
+		$('#confirm-title').html(title);
+		$('#confirm-message').html(message);
+	 	$('#confirm-dialog').modal('show');
+	 	$('#confirm-yes').click(function(){
+	 		completed();
+	 		$('#confirm-dialog').modal('hide');
+	 	})
+	}
+</script>

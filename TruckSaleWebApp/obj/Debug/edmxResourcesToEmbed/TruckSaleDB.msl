@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="trucksaledbModelStoreContainer" CdmEntityContainer="trucksaledbEntities">
+    <EntitySetMapping Name="PRODUCTs">
+      <EntityTypeMapping TypeName="trucksaledbModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="PRODUCT_GROUP_ID" ColumnName="PRODUCT_GROUP_ID" />
+          <ScalarProperty Name="OVERALL_DEMENSION" ColumnName="OVERALL_DEMENSION" />
+          <ScalarProperty Name="INSIDE_CARGO_BOX_DEMENSION" ColumnName="INSIDE_CARGO_BOX_DEMENSION" />
+          <ScalarProperty Name="FRONT_REAR_TREAD" ColumnName="FRONT_REAR_TREAD" />
+          <ScalarProperty Name="WHEEL_BASE" ColumnName="WHEEL_BASE" />
+          <ScalarProperty Name="GROUND_CLEARANCE" ColumnName="GROUND_CLEARANCE" />
+          <ScalarProperty Name="CURB_WEIGHT" ColumnName="CURB_WEIGHT" />
+          <ScalarProperty Name="LOAD_WEIGHT" ColumnName="LOAD_WEIGHT" />
+          <ScalarProperty Name="GROSS_WEIGHT" ColumnName="GROSS_WEIGHT" />
+          <ScalarProperty Name="NUMBER_OF_SEATS" ColumnName="NUMBER_OF_SEATS" />
+          <ScalarProperty Name="CAR_ENGINE" ColumnName="CAR_ENGINE" />
+          <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
+          <ScalarProperty Name="DISPLACEMENT" ColumnName="DISPLACEMENT" />
+          <ScalarProperty Name="DIAMETER_PISTON_STROKE" ColumnName="DIAMETER_PISTON_STROKE" />
+          <ScalarProperty Name="MAX_POWER_ROTATION_SPEED" ColumnName="MAX_POWER_ROTATION_SPEED" />
+          <ScalarProperty Name="MAX_TORQUE_ROTATION_SPEED" ColumnName="MAX_TORQUE_ROTATION_SPEED" />
+          <ScalarProperty Name="CLUTCH" ColumnName="CLUTCH" />
+          <ScalarProperty Name="MANUAL" ColumnName="MANUAL" />
+          <ScalarProperty Name="STEARING_SYSTEM" ColumnName="STEARING_SYSTEM" />
+          <ScalarProperty Name="BRAKES_SYSTEM" ColumnName="BRAKES_SYSTEM" />
+          <ScalarProperty Name="FRONT" ColumnName="FRONT" />
+          <ScalarProperty Name="REAR" ColumnName="REAR" />
+          <ScalarProperty Name="FRONT_REAR" ColumnName="FRONT_REAR" />
+          <ScalarProperty Name="HILL_CLIMBING_ABILITY" ColumnName="HILL_CLIMBING_ABILITY" />
+          <ScalarProperty Name="MINIMUM_TURNING_RADIUS" ColumnName="MINIMUM_TURNING_RADIUS" />
+          <ScalarProperty Name="MAXIMUM_SPEED" ColumnName="MAXIMUM_SPEED" />
+          <ScalarProperty Name="CAPACITY_FUEL_TANK" ColumnName="CAPACITY_FUEL_TANK" />
+          <ScalarProperty Name="SEAT_BELT" ColumnName="SEAT_BELT" />
+          <ScalarProperty Name="LOCK_DOOR" ColumnName="LOCK_DOOR" />
+          <ScalarProperty Name="DAMPING" ColumnName="DAMPING" />
+          <ScalarProperty Name="BRAKE_LIGHT" ColumnName="BRAKE_LIGHT" />
+          <ScalarProperty Name="BURGALAR" ColumnName="BURGALAR" />
+          <ScalarProperty Name="INSIDE_IMG_DIR" ColumnName="INSIDE_IMG_DIR" />
+          <ScalarProperty Name="OUTSIDE_IMG_DIR" ColumnName="OUTSIDE_IMG_DIR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCT_GROUP">
+      <EntityTypeMapping TypeName="trucksaledbModel.PRODUCT_GROUP">
+        <MappingFragment StoreEntitySet="PRODUCT_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLEs">
+      <EntityTypeMapping TypeName="trucksaledbModel.ROLE">
+        <MappingFragment StoreEntitySet="ROLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="trucksaledbModel.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

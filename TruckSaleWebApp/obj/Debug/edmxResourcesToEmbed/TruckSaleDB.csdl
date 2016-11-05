@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="trucksaledbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="IMG" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="PRICE" Type="Int64" />
+    <Property Name="PRODUCT_GROUP_ID" Type="Int64" />
+    <Property Name="OVERALL_DEMENSION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="INSIDE_CARGO_BOX_DEMENSION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="FRONT_REAR_TREAD" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="WHEEL_BASE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="GROUND_CLEARANCE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CURB_WEIGHT" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="LOAD_WEIGHT" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="GROSS_WEIGHT" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="NUMBER_OF_SEATS" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CAR_ENGINE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ENGINE_TYPE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="DISPLACEMENT" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="DIAMETER_PISTON_STROKE" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="MAX_POWER_ROTATION_SPEED" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="MAX_TORQUE_ROTATION_SPEED" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CLUTCH" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="MANUAL" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="STEARING_SYSTEM" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="BRAKES_SYSTEM" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="FRONT" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="REAR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="FRONT_REAR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="HILL_CLIMBING_ABILITY" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="MINIMUM_TURNING_RADIUS" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="MAXIMUM_SPEED" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACITY_FUEL_TANK" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="SEAT_BELT" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="LOCK_DOOR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="DAMPING" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="BRAKE_LIGHT" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="BURGALAR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="INSIDE_IMG_DIR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="OUTSIDE_IMG_DIR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCT_GROUP" Relationship="Self.product_groupproduct" FromRole="PRODUCT" ToRole="PRODUCT_GROUP" />
+  </EntityType>
+  <EntityType Name="PRODUCT_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="IMG" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTs" Relationship="Self.product_groupproduct" FromRole="PRODUCT_GROUP" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USERS" Relationship="Self.users_role" FromRole="ROLE" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_NAME" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="ROLE_ID" Type="Int64" />
+    <NavigationProperty Name="ROLE" Relationship="Self.users_role" FromRole="USERS" ToRole="ROLE" />
+  </EntityType>
+  <Association Name="product_groupproduct">
+    <End Role="PRODUCT_GROUP" Type="Self.PRODUCT_GROUP" Multiplicity="0..1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="PRODUCT_GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users_role">
+    <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="ROLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="trucksaledbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+    <EntitySet Name="PRODUCT_GROUP" EntityType="Self.PRODUCT_GROUP" />
+    <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <AssociationSet Name="product_groupproduct" Association="Self.product_groupproduct">
+      <End Role="PRODUCT_GROUP" EntitySet="PRODUCT_GROUP" />
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+    </AssociationSet>
+    <AssociationSet Name="users_role" Association="Self.users_role">
+      <End Role="ROLE" EntitySet="ROLEs" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

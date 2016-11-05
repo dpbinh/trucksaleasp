@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="trucksaledbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="256" />
+    <Property Name="Img" Type="varchar" MaxLength="256" />
+    <Property Name="Price" Type="bigint" />
+    <Property Name="ProductGroupId" Type="bigint" />
+    <Property Name="OverallDemension" Type="varchar" MaxLength="256" />
+    <Property Name="InsideCargBoxDemension" Type="varchar" MaxLength="256" />
+    <Property Name="FrontRearTread" Type="varchar" MaxLength="256" />
+    <Property Name="WheelBase" Type="varchar" MaxLength="256" />
+    <Property Name="GroundClearance" Type="varchar" MaxLength="256" />
+    <Property Name="CurbWeight" Type="varchar" MaxLength="256" />
+    <Property Name="LoadWeight" Type="varchar" MaxLength="256" />
+    <Property Name="GrossWeight" Type="varchar" MaxLength="256" />
+    <Property Name="NumberOfSeats" Type="varchar" MaxLength="256" />
+    <Property Name="CarEngine" Type="varchar" MaxLength="256" />
+    <Property Name="EnginType" Type="varchar" MaxLength="256" />
+    <Property Name="Displacement" Type="varchar" MaxLength="256" />
+    <Property Name="DiameterPistonTroke" Type="varchar" MaxLength="256" />
+    <Property Name="MaxPowerRotationSpeed" Type="varchar" MaxLength="256" />
+    <Property Name="MaxTorqueRotationSpeed" Type="varchar" MaxLength="256" />
+    <Property Name="Clutch" Type="varchar" MaxLength="256" />
+    <Property Name="Manual" Type="varchar" MaxLength="256" />
+    <Property Name="StearingSystem" Type="varchar" MaxLength="256" />
+    <Property Name="BrakesSystem" Type="varchar" MaxLength="256" />
+    <Property Name="Front" Type="varchar" MaxLength="256" />
+    <Property Name="Rear" Type="varchar" MaxLength="256" />
+    <Property Name="FrontRear" Type="varchar" MaxLength="256" />
+    <Property Name="HillClimbingAbility" Type="varchar" MaxLength="256" />
+    <Property Name="MaximumTuringRadius" Type="varchar" MaxLength="256" />
+    <Property Name="MaximumSpeed" Type="varchar" MaxLength="256" />
+    <Property Name="CapacityFuelTank" Type="varchar" MaxLength="256" />
+    <Property Name="SeatBelt" Type="varchar" MaxLength="256" />
+    <Property Name="LockDoor" Type="varchar" MaxLength="256" />
+    <Property Name="Damping" Type="varchar" MaxLength="256" />
+    <Property Name="BrakeLight" Type="varchar" MaxLength="256" />
+    <Property Name="Burgalar" Type="varchar" MaxLength="256" />
+    <Property Name="InsideImgDir" Type="varchar" MaxLength="256" />
+    <Property Name="OutSideImgDir" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="ProductGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="256" />
+    <Property Name="Img" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="256" />
+    <Property Name="Password" Type="varchar" MaxLength="256" />
+    <Property Name="Vcode" Type="varchar" MaxLength="256" />
+    <Property Name="RoleId" Type="bigint" />
+  </EntityType>
+  <Association Name="product_groupproduct">
+    <End Role="ProductGroup" Type="Self.ProductGroup" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users_role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="trucksaledbModelStoreContainer">
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductGroup" EntityType="Self.ProductGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="product_groupproduct" Association="Self.product_groupproduct">
+      <End Role="ProductGroup" EntitySet="ProductGroup" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="users_role" Association="Self.users_role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
