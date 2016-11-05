@@ -9,7 +9,9 @@ namespace TruckSaleWebApp.Models
     {
         public long Id { get; set; }
 
-        public string Path { get; set; }
+        public string ResourcePath { get; set; }
+
+        public string ResourceType { get; set; }
 
         public long productId { get; set; }
     }

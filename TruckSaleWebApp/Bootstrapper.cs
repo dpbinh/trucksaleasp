@@ -32,6 +32,7 @@ namespace TruckSaleWebApp
             container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IProductGroupRepository, ProductGroupRepository>();
             container.RegisterType<IUserRepository, UserRepository>();
+            container.RegisterType<IProductResourceRepository, ProductResouceRepository>();
         }
     }
 }

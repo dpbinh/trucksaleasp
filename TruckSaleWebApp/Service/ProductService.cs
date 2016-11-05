@@ -13,16 +13,24 @@ namespace TruckSaleWebApp.Service
     public class ProductService : IProductService
     {
         private static readonly string UPLOAD_IMG_PATH = Path.DirectorySeparatorChar + "Content" + Path.DirectorySeparatorChar + "img" + Path.DirectorySeparatorChar + "products";
-        private static readonly string DEFAULT_AVATAR = UPLOAD_IMG_PATH + Path.DirectorySeparatorChar + "truckdefault.jpg"; 
+
+        private static readonly string DEFAULT_AVATAR = UPLOAD_IMG_PATH + Path.DirectorySeparatorChar + "truckdefault.jpg";
+
+        private static readonly string INSIDE = "inside";
+
+        private static readonly string OUTSIDE = "outside";
 
         private IProductRepository _productRepo;
 
         private IProductGroupRepository _productGroupRepo;
 
-        public ProductService(IProductRepository productRepo, IProductGroupRepository productGroupRepo)
+        private IProductResourceRepository _resourceRepo;
+
+        public ProductService(IProductRepository productRepo, IProductGroupRepository productGroupRepo, IProductResourceRepository resourceRepo)
         {
             _productRepo = productRepo;
             _productGroupRepo = productGroupRepo;
+            _resourceRepo = resourceRepo;
         }
 
         public IList<ProductGroupBean> GetAllProductGroup()
@@ -123,6 +131,69 @@ namespace TruckSaleWebApp.Service
                 throw new Exception("Update product avatar failed: " + e.Message);
             }
 
+            return result;
+        }
+
+        public void UpdateProduct(ProductShortInfoBean productbean)
+        {
+            try
+            {
+                Product product = _productRepo.GetProduct(productbean.Id);
+                product.Name = productbean.Name;
+                product.Price = productbean.Price;
+                _productRepo.Update(product);
+            } catch(Exception e)
+            {
+                throw new Exception("Update Product Error : " + e.Message);
+            }
+        }
+
+        public void UpdateSpecification(ProductBean productbean)
+        {
+            try
+            {
+                Product product = _productRepo.GetProduct(productbean.Id);
+                productbean.CloneTo(product);
+                _productRepo.Update(product);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Update Product Specification Error : " + e.Message);
+            }
+        }
+
+        public ProductResourceBean UpdateResource(long id, string type, HttpPostedFile file)
+        {
+            if(!INSIDE.Equals(type) && !OUTSIDE.Equals(type))
+            {
+                throw new Exception("Resource Type not found");
+            }
+
+            ProductResourceBean result = null;
+            try
+            {
+                Product product = _productRepo.GetProduct(id);
+                if (product != null)
+                {
+                    
+                    string path = FileHelper.UploadFile(file, UPLOAD_IMG_PATH);
+                    ProductResource r = new ProductResource()
+                    {
+                        productId = product.Id,
+                        ResourcePath = path,
+                        ResourceType = type
+                    };
+                    ProductResource saved = _resourceRepo.Add(r);
+                    result = new ProductResourceBean(saved);
+                }
+                else
+                {
+                    throw new Exception("Product not found for product id = " + id);
+                }
+            } catch(Exception e)
+            {
+                throw new Exception("Update resource error: " + e.Message);
+            }
             return result;
         }
     }

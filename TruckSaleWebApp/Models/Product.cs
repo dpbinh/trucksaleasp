@@ -13,7 +13,7 @@ namespace TruckSaleWebApp.Models
         public Nullable<long> Price { get; set; }
         public Nullable<long> ProductGroupId { get; set; }
         public string OverallDemension { get; set; }
-        public string InsideCargBoxDemension { get; set; }
+        public string InsideCargoBoxDemension { get; set; }
         public string FrontRearTread { get; set; }
         public string WheelBase { get; set; }
         public string GroundClearance { get; set; }
@@ -22,9 +22,9 @@ namespace TruckSaleWebApp.Models
         public string GrossWeight { get; set; }
         public string NumberOfSeats { get; set; }
         public string CarEngine { get; set; }
-        public string EnginType { get; set; }
+        public string EngineType { get; set; }
         public string Displacement { get; set; }
-        public string DiameterPistonTroke { get; set; }
+        public string DiameterPistonStroke { get; set; }
         public string MaxPowerRotationSpeed { get; set; }
         public string MaxTorqueRotationSpeed { get; set; }
         public string Clutch { get; set; }
@@ -35,7 +35,7 @@ namespace TruckSaleWebApp.Models
         public string Rear { get; set; }
         public string FrontRear { get; set; }
         public string HillClimbingAbility { get; set; }
-        public string MaximumTuringRadius { get; set; }
+        public string MinimumTurningRadius { get; set; }
         public string MaximumSpeed { get; set; }
         public string CapacityFuelTank { get; set; }
         public string SeatBelt { get; set; }

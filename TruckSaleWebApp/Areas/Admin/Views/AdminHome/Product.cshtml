@@ -478,21 +478,22 @@ function readURL(input) {
 
 		$('#btn-update-quick-info').click(function(){
 			confirm("Cẩn thận", "có chắc bạn muốn cấp nhật", function(){
-				var qinfo = {
-					name : $('#product-name').val(),
-					price : $('#product-price').val()
+			    var qinfo = {
+                    Id: id,
+					Name : $('#product-name').val(),
+					Price : $('#product-price').val()
 				};
 
 				$.ajax({
-					url: "/admin/api/product/quickinfo/" + id,
+					url: "/api/adminproduct",
 					type : "PUT",
 					data : JSON.stringify(qinfo),
 					contentType : "application/json",
 					success: function(data){
-						if(data.success){
+						if(data.IsSuccess){
 							showSuccessAlert("Thành Công", "Cập nhật thành công");
 						} else {
-							showSuccessAlert("Lỗi", "Cập nhật không thành công : " + data.message);
+							showSuccessAlert("Lỗi", "Cập nhật không thành công : " + data.Message);
 						}
 					}
 				});
@@ -501,49 +502,50 @@ function readURL(input) {
 
 		$('#btn-update-product-detail').click(function(){
 			confirm("Cẩn thận", "có chắc bạn muốn cấp nhật", function(){
-				var product = {
-					overallDemension: 			$('#overall_demension').val(),
-					insideCargoBoxDemension :	$('#inside_cargo_box_demension').val(),
-					frontRearTread:				$('#front_rear_tread').val(),
-					wheelBase:					$('#wheel_base').val(),
-					groundClearance: 			$('#ground_clearance').val(),
-					curbWeight:					$('#curb_weight').val(),
-					loadWeight:					$('#load_weight').val(),
-					grossWeight:				$('#gross_weight').val(),
-					numberOfSeats:				$('#number_of_seats').val(),
-					carEngine:					$('#car_engine').val(),
-					engineType:					$('#engine_type').val(),
-					displacement:				$('#displacement').val(),
-					diameterPistonStroke:		$('#diameter_x_piston_stroke').val(),
-					maxPowerRotationSpeed:		$('#max_power_rotation_speed').val(),
-					maxTorqueRotationSpeed:		$('#max_torque_rotation_speed').val(),
-					clutch:						$('#clutch').val(),
-					manual:						$('#manual').val(),
-					stearingSystem:				$('#stearing_system').val(),
-					brakesSystem:				$('#brakes_system').val(),
-					front:						$('#front').val(),
-					rear:						$('#rear').val(),
-					frontRear:					$('#front_rear').val(),
-					hillClimbingAbility:		$('#hill_climbing_ability').val(),
-					minimumTurningRadius:		$('#minimum_turning_radius').val(),
-					maximumSpeed:				$('#maximum_speed').val(),
-					capacityFuelTank:			$('#capacity_fuel_tank').val(),
-					seatBelt:					$('#seat_belt').val(),
-					lockDoor:					$('#lock_door').val(),
-					damping:					$('#damping').val(),
-					brakeLight:					$('#brake_light').val(),
-					burgalar:					$('#burgalar').val()
+			    var product = {
+                    Id: id,
+					OverallDemension: 			$('#overall_demension').val(),
+					InsideCargoBoxDemension :	$('#inside_cargo_box_demension').val(),
+					FrontRearTread:				$('#front_rear_tread').val(),
+					WheelBase:					$('#wheel_base').val(),
+					GroundClearance: 			$('#ground_clearance').val(),
+					CurbWeight:					$('#curb_weight').val(),
+					LoadWeight:					$('#load_weight').val(),
+					GrossWeight:				$('#gross_weight').val(),
+					NumberOfSeats:				$('#number_of_seats').val(),
+					CarEngine:					$('#car_engine').val(),
+					EngineType:					$('#engine_type').val(),
+					Displacement:				$('#displacement').val(),
+					DiameterPistonStroke:		$('#diameter_x_piston_stroke').val(),
+					MaxPowerRotationSpeed:		$('#max_power_rotation_speed').val(),
+					MaxTorqueRotationSpeed:		$('#max_torque_rotation_speed').val(),
+					Clutch:						$('#clutch').val(),
+					Manual:						$('#manual').val(),
+					StearingSystem:				$('#stearing_system').val(),
+					BrakesSystem:				$('#brakes_system').val(),
+					Front:						$('#front').val(),
+					Rear:						$('#rear').val(),
+					FrontRear:					$('#front_rear').val(),
+					HillClimbingAbility:		$('#hill_climbing_ability').val(),
+					MinimumTurningRadius:		$('#minimum_turning_radius').val(),
+					MaximumSpeed:				$('#maximum_speed').val(),
+					CapacityFuelTank:			$('#capacity_fuel_tank').val(),
+					SeatBelt:					$('#seat_belt').val(),
+					LockDoor:					$('#lock_door').val(),
+					Damping:					$('#damping').val(),
+					BrakeLight:					$('#brake_light').val(),
+					Burgalar:					$('#burgalar').val()
 				};
 				$.ajax({
-					url: "/admin/api/product/detail/" + id,
+				    url: "/api/adminproduct/specification",
 					type : "PUT",
 					data : JSON.stringify(product),
 					contentType : "application/json",
 					success: function(data){
-						if(data.success){
+						if(data.IsSuccess){
 							showSuccessAlert("Thành Công", "Cập nhật thành công");
 						} else {
-							showSuccessAlert("Lỗi", "Cập nhật không thành công : " + data.message);
+							showSuccessAlert("Lỗi", "Cập nhật không thành công : " + data.Message);
 						}
 					}
 				});
@@ -587,16 +589,16 @@ function readURL(input) {
 
 
 		$('#inside-add-img').click(function() {
-			var url = "/admin/api/product/insideresource/" + id;
+		    var url = "/api/adminproduct/resource/" + id+ "/inside";
 			uploadImg(url, function(data) {
-				buildResource('#inside-container', data.object);
+				buildResource('#inside-container', data.Result);
 			});
 		});
 
 		$('#outside-add-img').click(function() {
-			var url = "/admin/api/product/outsideresource/" + id;
+		    var url = "/api/adminproduct/resource/" + id+ "/inside";
 			uploadImg(url, function(data) {
-				buildResource('#outside-container', data.object);
+			    buildResource('#outside-container', data.Result);
 			});
 		});
 
