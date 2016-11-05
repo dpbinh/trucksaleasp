@@ -456,18 +456,18 @@ function readURL(input) {
 			$('#burgalar').val(product.Burgalar);
 		});
 
-		//$.get("/api/product/resources/" + id, function(data) {
-		//	$('#inside-container').html("");
-		//	$('#outside-container').html("");
-		//	$.each(data.objects, function(key, value) {
+		$.get("/api/resource/" + id, function(data) {
+			$('#inside-container').html("");
+			$('#outside-container').html("");
+			$.each(data.Result, function(key, value) {
 
-		//		if (value.type == "INSIDE") {
-		//			buildResource('#inside-container', value);
-		//		} else if (value.type == "OUTSIDE") {
-		//			buildResource('#outside-container', value);
-		//		}
-		//	});
-		//});
+				if (value.ResourceType == "inside") {
+					buildResource('#inside-container', value);
+				} else if (value.type == "outside") {
+					buildResource('#outside-container', value);
+				}
+			});
+		});
 
 		$('#btn-upload-avatar').click(function() {
 		    var url = uploadaction = "/api/adminproduct/avatar/" + id;
@@ -556,12 +556,12 @@ function readURL(input) {
 
 		$('#btn-update-manufacture-action').click(function(){
 			$('#manufacture-select').html("");
-			$.get("/api/product/productgroups", function(data){
+			$.get("/api/manufacture", function(data){
 				var tmp = $.validator.format("<option value='{0}' {2}>{1}</option>");
 				var selectedId = $('#product-manufacture-id').val();
-				$.each(data.objects, function(key, value){
-					var selected = value.id == selectedId ? "selected":"";
-					$('#manufacture-select').append(tmp(value.id, value.name, selected));
+				$.each(data.Result, function(key, value){
+					var selected = value.Id == selectedId ? "selected":"";
+					$('#manufacture-select').append(tmp(value.Id, value.Name, selected));
 				});
 			});
 			var updateManufacture = function(){
@@ -569,15 +569,15 @@ function readURL(input) {
 				$('#update-manufacture-form').modal('hide');
 				confirm("Cẩn thận", "Có chắc bạn muốn cập nhật nhà sản xuất", function(){
 					$.ajax({
-						url: "/admin/api/product/group/" + id + "/" + $('#manufacture-select').val(),
+						url: "/api/adminproduct/manufacture/" + id + "/" + $('#manufacture-select').val(),
 						type: "PUT",
 						success: function(data){
-							if(data.success){
+							if(data.IsSuccess){
 								$('#product-manufacture').val($('#manufacture-select option:selected').text());
 								$('#product-manufacture-id').val($('#manufacture-select').val());
 								showSuccessAlert("Thành Công", "Cập nhật thành công");
 							} else {
-								showSuccessAlert("Lỗi", "Cập nhật không thành công : " + data.message);
+								showSuccessAlert("Lỗi", "Cập nhật không thành công : " + data.Message);
 							}
 						}
 					});
@@ -589,14 +589,14 @@ function readURL(input) {
 
 
 		$('#inside-add-img').click(function() {
-		    var url = "/api/adminproduct/resource/" + id+ "/inside";
+		    var url = "/api/adminresource/resource/" + id+ "/inside";
 			uploadImg(url, function(data) {
 				buildResource('#inside-container', data.Result);
 			});
 		});
 
 		$('#outside-add-img').click(function() {
-		    var url = "/api/adminproduct/resource/" + id+ "/inside";
+		    var url = "/api/adminresource/resource/" + id+ "/outside";
 			uploadImg(url, function(data) {
 			    buildResource('#outside-container', data.Result);
 			});
@@ -605,19 +605,19 @@ function readURL(input) {
 		function buildResource(el, value) {
 			var tmp = $.validator
 					.format("<tr class='{0}'><td><button id='{0}' class='btn btn-danger'>Xóa</button></td><td><img src='{1}' width='200' /></td></tr>");
-			$(el).append(tmp(value.id, value.path));
+			$(el).append(tmp(value.Id, value.ResourcePath));
 
-			$('#'+value.id).click(function(){
-				removeResource(value.name , value.type, function(){
-					$('.'+value.id).remove();
+			$('#'+value.Id).click(function(){
+				removeResource(value.Id, function(){
+					$('.'+value.Id).remove();
 				});
 			});
 		}
 
-		function removeResource(name, type, completed) {
+		function removeResource(id, completed) {
 	 		confirm("Cẩn Thận", "Có chắc bạn muốn xóa ảnh này", function(){
 	 			$.ajax({
-					url:"/admin/api/product/resource/" + id +"/" + name+"/" + type,
+	 			    url:"/api/adminresource/" + id ,
 					type: "DELETE",
 					success: function(data){
 						completed();

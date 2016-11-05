@@ -28,7 +28,7 @@ create table Products
     Price bigint,
     ProductGroupId bigint,
     OverallDemension varchar(256),
-    InsideCargBoxDemension varchar(256),
+    InsideCargoBoxDemension varchar(256),
     FrontRearTread varchar(256),
     WheelBase varchar(256),
     GroundClearance varchar(256),
@@ -37,9 +37,9 @@ create table Products
     GrossWeight varchar(256),
     NumberOfSeats varchar(256),
     CarEngine varchar(256),
-    EnginType varchar(256),
+    EngineType varchar(256),
     Displacement varchar(256),
-    DiameterPistonTroke varchar(256),
+    DiameterPistonStroke varchar(256),
     MaxPowerRotationSpeed varchar(256),
     MaxTorqueRotationSpeed varchar(256),
     Clutch varchar(256),
@@ -50,22 +50,21 @@ create table Products
     Rear varchar(256),
     FrontRear varchar(256),
     HillClimbingAbility varchar(256),
-    MaximumTuringRadius varchar(256),
+    MinimumTurningRadius varchar(256),
     MaximumSpeed varchar(256),
     CapacityFuelTank varchar(256),
     SeatBelt varchar(256),
     LockDoor varchar(256),
     Damping varchar(256),
     BrakeLight varchar(256),
-    Burgalar varchar(256),
-    InsideImgDir varchar(256),
-    OutSideImgDir varchar(256)
+    Burgalar varchar(256)
 );
 
 create table ProductResources
 (
 	Id bigint primary key identity,
-	path varchar(256),
+	resourcePath varchar(256),
+	resourceType varchar(20),
 	productId bigint
 )
 

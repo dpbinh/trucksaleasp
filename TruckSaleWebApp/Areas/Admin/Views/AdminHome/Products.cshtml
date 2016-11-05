@@ -88,11 +88,11 @@
 					url: "/admin/api/product/" +id,
 					type: "DELETE",
 					success: function(data){
-						if(data.success){
+						if(data.IsSuccess){
 							loadProduct();
 							showSuccessAlert("Thành Công", "Đã xóa xe thành công");
 						} else {
-							showSuccessAlert("Lỗi", "Xóa xe không thành công : " + data.message);
+							showSuccessAlert("Lỗi", "Xóa xe không thành công : " + data.Message);
 						}
 					}
 				});

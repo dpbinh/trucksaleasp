@@ -18,7 +18,7 @@ namespace TruckSaleWebApp.Repository
             return result;
         }
 
-        public ProductGroup FindOne(long id)
+        public ProductGroup Get(long id)
         {
             ProductGroup group = null;
             using (TruckSaleDb db = new TruckSaleDb())

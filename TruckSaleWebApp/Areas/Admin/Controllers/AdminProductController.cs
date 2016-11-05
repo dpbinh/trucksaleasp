@@ -52,20 +52,12 @@ namespace TruckSaleWebApp.Areas.Admin.Controllers
             return new ActionResult(() => { return _productService.UpdateProductAvatar(id, request.Files[0]); });
         }
 
-
-        [Route("resource/{id}/{type}")]
-        [HttpPost]
-        public ActionResult UpdateResource(long id, string type)
+        [Route("manufacture/{id}/{manufactureId}")]
+        [HttpPut]
+        public ActionResult UpdateManufacture(long id, long manufactureId)
         {
-            var request = HttpContext.Current.Request;
-            if (request.Files.Count <= 0)
-            {
-                return new ActionResult()
-                {
-                    Message = "No file selected"
-                };
-            }
-            return new ActionResult(() => { return _productService.UpdateResource(id, type, request.Files[0]); });
+            return new ActionResult(() => { _productService.UpdateManufacture(id, manufactureId); return null; });
         }
+        
     }
 }

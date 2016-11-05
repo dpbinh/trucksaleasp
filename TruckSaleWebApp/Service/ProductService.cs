@@ -196,5 +196,57 @@ namespace TruckSaleWebApp.Service
             }
             return result;
         }
+
+        public void RemoveResource(long id)
+        {
+            try
+            {
+                var rs = _resourceRepo.Remove(id);
+                string rspath = HttpContext.Current.Server.MapPath("~" + rs.ResourcePath);
+                File.Delete(rspath);
+
+            } catch(Exception e)
+            {
+                throw new Exception("Remove Resource Error : " + e.Message);
+            }
+        }
+
+        public IList<ProductResourceBean> GetAllResourceByProduct(long id)
+        {
+            IList<ProductResourceBean> result = new List<ProductResourceBean>();
+            try
+            {
+                result = BeanUtil.ConvertToList<ProductResource, ProductResourceBean>(_resourceRepo.GetByProduct(id));
+            } catch(Exception e)
+            {
+                throw new Exception("Error Get resource for product : " + id + ": " + e.Message);
+            }
+            return result;
+        }
+
+        public void UpdateManufacture(long id, long manufactureId)
+        {
+            try
+            {
+                var product = _productRepo.GetProduct(id);
+                if (product == null)
+                    throw new Exception("Product not found for product id = " + id);
+
+                var group = _productGroupRepo.Get(manufactureId);
+                if (group == null)
+                    throw new Exception("Manufacture not found for manufacture id = " + manufactureId);
+
+                if(product.ProductGroupId != manufactureId)
+                {
+                    product.ProductGroupId = manufactureId;
+                    _productRepo.Update(product);
+                }
+            } catch(Exception e)
+            {
+                throw new Exception(string.Format("update manufacture for product {0} get error: {1}", id, e.Message)); 
+            }
+        }
     }
+
+    
 }

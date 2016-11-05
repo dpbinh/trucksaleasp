@@ -13,6 +13,6 @@ namespace TruckSaleWebApp.Repository
 
         ProductResource Add(ProductResource resource);
 
-        void Remove(long id);
+        ProductResource Remove(long id);
     }
 }

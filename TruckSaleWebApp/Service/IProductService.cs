@@ -22,8 +22,10 @@ namespace TruckSaleWebApp.Service
         string UpdateProductAvatar(long id, HttpPostedFile file);
 
         void UpdateProduct(ProductShortInfoBean productbean);
-
+        IList<ProductResourceBean> GetAllResourceByProduct(long id);
         void UpdateSpecification(ProductBean productbean);
         ProductResourceBean UpdateResource(long id, string type, HttpPostedFile httpPostedFile);
+        void RemoveResource(long id);
+        void UpdateManufacture(long id, long manufactureId);
     }
 }

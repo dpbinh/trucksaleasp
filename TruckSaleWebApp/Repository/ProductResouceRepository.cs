@@ -31,13 +31,16 @@ namespace TruckSaleWebApp.Repository
             return result;
         }
 
-        public void Remove(long id)
+        public ProductResource Remove(long id)
         {
-            using(var db = new TruckSaleDb())
+            ProductResource result = null;
+            using (var db = new TruckSaleDb())
             {
                 var product = db.ProductResources.Single(r => r.Id == id);
-                db.ProductResources.Remove(product);
+                result = db.ProductResources.Remove(product);
             }
+
+            return result;
         }
     }
 }

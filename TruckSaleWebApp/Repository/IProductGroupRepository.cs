@@ -10,6 +10,6 @@ namespace TruckSaleWebApp.Repository
     public interface IProductGroupRepository
     {
         IList<ProductGroup> FindAllProducts();
-
+        ProductGroup Get(long manufactureId);
     }
 }
