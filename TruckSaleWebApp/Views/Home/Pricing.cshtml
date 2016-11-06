@@ -2,6 +2,48 @@
 @{
     ViewBag.Title = "Bảng Giá";
 }
+<section id="team">
+    <div class="container">
+        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>BẢNG GIÁ</h3><hr />
+            </div>
+        </div>
 
-<h2>Pricing</h2>
+        <div class="row animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="price-wrapper" id="pricing-container">
 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+$(function(){
+	$.get("/api/product/pricing", function(data){
+		$('#pricing-container').html("");
+		var headtmp= $.validator.format("<h3><center>{0}</center></h3>");
+		var containertmp = $.validator.format(" <div class='table-responsive'> <table class='table'>{0}</table></div>");
+		var itemtmp = $.validator.format("<tr><td width='30%'><a href='/home/product/{3}'><img class='price-logo' src='{0}'/></a></td><td width='50%'>{1}</td><td>{2}</td></tr>");
+
+		$.each(data.Result, function(key, pricing){
+			if(pricing.Products.length > 0){
+				var header = headtmp(pricing.Manufacture);
+
+				var content = "";
+				for(x in pricing.Products){
+					var product = pricing.Products[x];
+					content += itemtmp(product.Img, product.Name, moneyFormat(product.Price), product.Id);
+				}
+				var pricingtb = containertmp(content);
+				$('#pricing-container').append(header);
+				$('#pricing-container').append(pricingtb);
+			}
+
+		});
+	});
+});
+
+</script>

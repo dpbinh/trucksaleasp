@@ -25,7 +25,11 @@ namespace TruckSaleWebApp.Service
         IList<ProductResourceBean> GetAllResourceByProduct(long id);
         void UpdateSpecification(ProductBean productbean);
         ProductResourceBean UpdateResource(long id, string type, HttpPostedFile httpPostedFile);
+        ProductGroupBean GetManufacture(long id);
         void RemoveResource(long id);
         void UpdateManufacture(long id, long manufactureId);
+        IList<ProductShortInfoBean> GetProductByManufacture(long id);
+        void DeleteProduct(long id);
+        object GetPricing();
     }
 }

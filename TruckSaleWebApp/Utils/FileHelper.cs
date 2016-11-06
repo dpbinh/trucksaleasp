@@ -14,9 +14,19 @@ namespace TruckSaleWebApp.Utils
             string ext = Path.GetExtension(filename);
             string newname = DateTime.Now.Ticks + ext;
             string newPath = Path.Combine( path, newname);
-            string savePath = HttpContext.Current.Server.MapPath("~" + newPath);
+            string savePath = MapPath(newPath);
             file.SaveAs(savePath);
             return newPath;
+        }
+
+        public static void Delete(string oldImgPath)
+        {
+            File.Delete(MapPath(oldImgPath));
+        }
+
+        public static string MapPath(string path)
+        {
+            return HttpContext.Current.Server.MapPath("~" + path);
         }
     }
 }

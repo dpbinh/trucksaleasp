@@ -10,6 +10,7 @@ using TruckSaleWebApp.Service;
 
 namespace TruckSaleWebApp.Controllers
 {
+    [RoutePrefix("api/product")]
     public class ProductController : ApiController
     {
         private IProductService _productService;
@@ -29,6 +30,16 @@ namespace TruckSaleWebApp.Controllers
             return new ActionResult(() => { return _productService.GetProduct(id); });
         }
 
- 
+        [Route("manufacture/{id}")]
+        public ActionResult GetByManufacture(long id)
+        {
+            return new ActionResult(() => { return _productService.GetProductByManufacture(id); });
+        }
+
+        [Route("pricing")]
+        public ActionResult GetPricing()
+        {
+            return new ActionResult(() => { return _productService.GetPricing(); });
+        }
     }
 }

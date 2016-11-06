@@ -59,5 +59,10 @@ namespace TruckSaleWebApp.Areas.Admin.Controllers
             return new ActionResult(() => { _productService.UpdateManufacture(id, manufactureId); return null; });
         }
         
+
+        public ActionResult Delete(long id)
+        {
+            return new ActionResult(() => { _productService.DeleteProduct(id); return null; });
+        }
     }
 }

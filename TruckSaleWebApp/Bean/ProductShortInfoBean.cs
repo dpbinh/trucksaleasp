@@ -26,12 +26,16 @@ namespace TruckSaleWebApp.Bean
             this.Name = product.Name;
             this.Price = product.Price.Value;
             this.Img = product.Img;
-            if(product.ProductGroup != null)
+            try
             {
-                this.Groupid = product.ProductGroupId.Value;
-                this.GroupName = product.ProductGroup.Name;
+                if (product.ProductGroup != null)
+                {
+                    this.Groupid = product.ProductGroupId.Value;
+                    this.GroupName = product.ProductGroup.Name;
+                }
+
             }
-           
+            catch (Exception e) { }
         }
     }
 }

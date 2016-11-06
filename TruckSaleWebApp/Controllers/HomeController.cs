@@ -24,8 +24,9 @@ namespace TruckSaleWebApp.Controllers
             return View();
         }
 
-        public ActionResult Product()
+        public ActionResult Product(int id)
         {
+            ViewBag.Id = id;
             return View();
         }
     }

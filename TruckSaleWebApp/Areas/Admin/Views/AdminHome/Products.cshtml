@@ -74,8 +74,8 @@
 				var tmp = $.validator.format(tmpstr);
 				$.each(data.Result, function (key, product) {
 				    $('#products').append(tmp(product.GroupName, product.Id, product.Name, product.Price));
-					$('#product-'+product.id).click(function(){
-						removeProduct(product.id);
+					$('#product-'+product.Id).click(function(){
+						removeProduct(product.Id);
 					});
 				});
 			});
@@ -85,7 +85,7 @@
 			confirm("Cẩn thân", "Xóa xe sẽ làm dữ liệu của xe hiện tại mất vĩnh viễn, và phải nhập lại, cẩn thận trước khi xóa",
 					function(){
 				$.ajax({
-					url: "/admin/api/product/" +id,
+					url: "/api/adminproduct/" +id,
 					type: "DELETE",
 					success: function(data){
 						if(data.IsSuccess){

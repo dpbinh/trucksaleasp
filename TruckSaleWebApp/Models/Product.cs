@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -43,6 +44,7 @@ namespace TruckSaleWebApp.Models
         public string Damping { get; set; }
         public string BrakeLight { get; set; }
         public string Burgalar { get; set; }
+        [ForeignKey("ProductGroupId")]
         public virtual ProductGroup ProductGroup { get; set; }
     }
 }

@@ -243,6 +243,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Bean\PricingBean.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductGroup.cs" />
     <Compile Include="Models\ProductResource.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\IProductService.cs" />
     <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Service\UserAuthorize.cs" />
     <Compile Include="Utils\BeanUtil.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\PasswordHelper.cs" />

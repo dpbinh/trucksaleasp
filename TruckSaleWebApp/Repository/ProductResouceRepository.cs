@@ -38,6 +38,7 @@ namespace TruckSaleWebApp.Repository
             {
                 var product = db.ProductResources.Single(r => r.Id == id);
                 result = db.ProductResources.Remove(product);
+                db.SaveChanges();
             }
 
             return result;

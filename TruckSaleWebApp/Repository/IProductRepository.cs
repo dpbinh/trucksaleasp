@@ -16,5 +16,7 @@ namespace TruckSaleWebApp.Repository
         Product GetProduct(long id);
 
         void Update(Product product);
+        Product Delete(long id);
+        IList<Product> GetProductsByGroup(long id);
     }
 }

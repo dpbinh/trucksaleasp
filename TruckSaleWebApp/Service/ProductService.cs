@@ -118,7 +118,7 @@ namespace TruckSaleWebApp.Service
                     _productRepo.Update(product);
                     if (!string.IsNullOrEmpty(oldImgPath) && oldImgPath != DEFAULT_AVATAR)
                     {
-                        File.Delete(oldImgPath);
+                        FileHelper.Delete(oldImgPath);
                     }
                     result = imgPath;
                 } else
@@ -202,9 +202,7 @@ namespace TruckSaleWebApp.Service
             try
             {
                 var rs = _resourceRepo.Remove(id);
-                string rspath = HttpContext.Current.Server.MapPath("~" + rs.ResourcePath);
-                File.Delete(rspath);
-
+                FileHelper.Delete(rs.ResourcePath);
             } catch(Exception e)
             {
                 throw new Exception("Remove Resource Error : " + e.Message);
@@ -239,12 +237,107 @@ namespace TruckSaleWebApp.Service
                 if(product.ProductGroupId != manufactureId)
                 {
                     product.ProductGroupId = manufactureId;
+                    product.ProductGroup = group;
                     _productRepo.Update(product);
+                    
                 }
             } catch(Exception e)
             {
                 throw new Exception(string.Format("update manufacture for product {0} get error: {1}", id, e.Message)); 
             }
+        }
+
+        public void DeleteProduct(long id)
+        {
+            try
+            {
+                var product = _productRepo.Delete(id);
+                if(product != null)
+                {
+                    if (!string.IsNullOrEmpty(product.Img) && product.Img != DEFAULT_AVATAR)
+                    {
+                        FileHelper.Delete(product.Img);
+                    }
+                    
+                    var resources = _resourceRepo.GetByProduct(product.Id);
+                    string error = "";
+                    foreach(var rs in resources)
+                    {
+                        try
+                        {
+                            RemoveResource(rs.Id);
+                        } catch(Exception e)
+                        {
+                            error += e.Message + Environment.NewLine;
+                        }
+                        
+                    }
+
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        throw new Exception("delete resource for product error : " + error);
+                    }
+                }
+            } catch(Exception e)
+            {
+                throw new Exception("Delete product error with product id = " + id + " : " + e.Message);
+            }
+        }
+
+        public ProductGroupBean GetManufacture(long id)
+        {
+            ProductGroupBean result = null;
+            try
+            {
+                result = new ProductGroupBean(_productGroupRepo.Get(id));
+            } catch(Exception e)
+            {
+                throw new Exception("Get Manufacture id = " + id + " error : " + e.Message);
+            }
+
+            return result;
+        }
+
+        public IList<ProductShortInfoBean> GetProductByManufacture(long id)
+        {
+            IList<ProductShortInfoBean> result = new List<ProductShortInfoBean>();
+            try
+            {
+                result = BeanUtil.ConvertToList<Product, ProductShortInfoBean>(_productRepo.GetProductsByGroup(id));
+            }catch(Exception e)
+            {
+                throw new Exception("Get Product by manufacture error : " + e.Message);
+            }
+
+            return result;
+        }
+
+        public object GetPricing()
+        {
+            IList<PricingBean> result = new List<PricingBean>();
+            try
+            {
+                IList<ProductShortInfoBean> products = GetAllProducts();
+                foreach(ProductShortInfoBean product in products)
+                {
+                    var list = result.Where(p => p.ManufactureId == product.Groupid).ToList();
+                    var pricing = list.Count > 0 ? list[0] : null;
+                    if(pricing == null)
+                    {
+                        pricing = new PricingBean()
+                        {
+                            Manufacture = product.GroupName,
+                            ManufactureId = product.Groupid,
+                        };
+                    }
+                    pricing.Products.Add(product);
+                    result.Add(pricing);
+                }
+            } catch(Exception e)
+            {
+                throw new Exception("Get pricing error : " + e.Message);
+            }
+            return result;
         }
     }
 

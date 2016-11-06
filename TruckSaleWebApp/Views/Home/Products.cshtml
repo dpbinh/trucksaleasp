@@ -21,27 +21,27 @@
 <script>
 
 	var id = @ViewBag.Id;
-	//$(function(){
-	//	$.get("/api/product/group/" + id , function(data){
-	//		$('#manufacture-name').html(data.object.name);
-	//	});
+	$(function(){
+		$.get("/api/manufacture/" + id , function(data){
+			$('#manufacture-name').html(data.Result.Name);
+		});
 
-	//	$.get("/api/product/products/"+ id, function(data){
-	//		var tmps = "<div class='col-xs-6 col-sm-4 col-md-4 col-lg-4'>"+
-	//			        	"<div class='work-wrapper'>"+
-	//			        		"<a class='fancybox-media' title='Image Title Goes Here' href='/detail/{3}'>"+
-	//			            		"<img src='{0}' class='img-responsive img-rounded' alt='' />"+
-	//			        		"</a>"+
-	//			        		"<h4>{1}</h4>"+
-	//			        		"<h2><strong>{2}</strong></h2>"+
-	//			    		"</div>"+
-	//			    	"</div>";
-	//		var tmp = $.validator.format(tmps);
-	//		$('#trucks-container').html("");
-	//		$.each(data.objects, function(key, value){
-	//			$('#trucks-container').append(tmp(value.img, value.name, moneyFormat(value.price), value.id));
-	//		});
-	//	});
-	//});
+		$.get("/api/product/manufacture/"+ id, function(data){
+			var tmps = "<div class='col-xs-6 col-sm-4 col-md-4 col-lg-4'>"+
+				        	"<div class='work-wrapper'>"+
+				        		"<a class='fancybox-media' title='Image Title Goes Here' href='/home/product/{3}'>"+
+				            		"<img src='{0}' class='img-responsive img-rounded' alt='' />"+
+				        		"</a>"+
+				        		"<h4>{1}</h4>"+
+				        		"<h2><strong>{2}</strong></h2>"+
+				    		"</div>"+
+				    	"</div>";
+			var tmp = $.validator.format(tmps);
+			$('#trucks-container').html("");
+			$.each(data.Result, function(key, value){
+				$('#trucks-container').append(tmp(value.Img, value.Name, moneyFormat(value.Price), value.Id));
+			});
+		});
+	});
 </script>
 

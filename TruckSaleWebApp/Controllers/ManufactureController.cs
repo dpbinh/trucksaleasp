@@ -21,12 +21,13 @@ namespace TruckSaleWebApp.Controllers
 
         public ActionResult Get()
         {
-            ActionResult result = new ActionResult();
-            result.Execute(() =>
-            {
-                return _productService.GetAllProductGroup();
-            });
-            return result;
+            return new ActionResult(() => { return _productService.GetAllProductGroup(); });
         }
+
+        public ActionResult Get(long id)
+        {
+            return new ActionResult(() => { return _productService.GetManufacture(id); });
+        }
+
     }
 }

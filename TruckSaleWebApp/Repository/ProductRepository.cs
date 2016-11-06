@@ -9,6 +9,19 @@ namespace TruckSaleWebApp.Repository
 {
     public class ProductRepository : IProductRepository
     {
+        public Product Delete(long id)
+        {
+            Product result = null;
+            using(var db = new TruckSaleDb())
+            {
+                var product = db.Products.Single(p => p.Id == id);
+                result = db.Products.Remove(product);
+                db.SaveChanges();
+            }
+
+            return result;
+        }
+
         public IList<Product> GetAllProducts()
         {
             IList<Product> result = new List<Product>();
@@ -31,6 +44,16 @@ namespace TruckSaleWebApp.Repository
 
             return result;
 
+        }
+
+        public IList<Product> GetProductsByGroup(long id)
+        {
+            IList<Product> result = new List<Product>();
+            using(var db = new TruckSaleDb())
+            {
+                result = db.Products.Where(p => p.ProductGroupId == id).ToList();
+            }
+            return result;
         }
 
         public void Save(Product product)
