@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TruckSaleWebApp.Models;
 
 namespace TruckSaleWebApp
 {
@@ -20,6 +21,12 @@ namespace TruckSaleWebApp
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Bootstrapper.Initialise();
+            DatabaseInitialize.Init();
+        }
+
+        protected void Application_PostAuthorizeRequest()
+        {
+            System.Web.HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
         }
     }
 }

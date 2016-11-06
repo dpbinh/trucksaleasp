@@ -17,6 +17,7 @@ namespace TruckSaleWebApp.Areas.Admin.Controllers
             _productService = productService;
         }
 
+        [ApiUserAuthorize]
         [Route("resource/{id}/{type}")]
         [HttpPost]
         public ActionResult Post(long id, string type)
@@ -32,6 +33,7 @@ namespace TruckSaleWebApp.Areas.Admin.Controllers
             return new ActionResult(() => { return _productService.UpdateResource(id, type, request.Files[0]); });
         }
 
+        [ApiUserAuthorize]
         public ActionResult Delete(long id)
         {
             return new ActionResult(() => {   _productService.RemoveResource(id); return null; });

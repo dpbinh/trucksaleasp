@@ -17,7 +17,7 @@
                 Hoạt Động <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="/admin/logout"><i class="fa fa-fw fa-power-off"></i> LogOut</a></li>
+                <li><a href="/admin/adminhome/logout"><i class="fa fa-fw fa-power-off"></i> Đăng Xuất</a></li>
             </ul>
         </li>
     </ul>
@@ -25,11 +25,11 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li class="@Html.IsActive("adminhome", "products") @Html.IsActive("adminhome", "product")">
-                <a href="/admin/products">Quản Lý Sản Phẩm</a>
+                @Html.ActionLink("Quản Lý Sản Phẩm", "products", "adminhome")
             </li>
 
-            <li class="@Html.IsActive("adminhome", "changepass")">
-                <a href="/admin/changepass">Đổi Mật Khẩu</a>
+            <li class="@Html.IsActive("adminhome", "changepassword")">
+                @Html.ActionLink("Đổi Mật Khẩu", "changepassword", "adminhome")
             </li>
 
         </ul>

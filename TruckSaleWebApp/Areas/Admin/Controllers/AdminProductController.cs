@@ -20,16 +20,19 @@ namespace TruckSaleWebApp.Areas.Admin.Controllers
             _productService = productService;
         }
 
+        [ApiUserAuthorize]
         public ActionResult Post([FromBody] ProductShortInfoBean productbean)
         {
             return new ActionResult(() => { _productService.AddNewProduct(productbean); return null; });
         }
 
+        [ApiUserAuthorize]
         public ActionResult Put([FromBody] ProductShortInfoBean productBean)
         {
             return new ActionResult(() => {   _productService.UpdateProduct(productBean); return null; });
         }
 
+        [ApiUserAuthorize]
         [Route("specification")]
         [HttpPut]
         public ActionResult Put([FromBody] ProductBean productbean)
@@ -37,6 +40,7 @@ namespace TruckSaleWebApp.Areas.Admin.Controllers
             return new ActionResult(() => { _productService.UpdateSpecification(productbean); return null; });
         }
 
+        [ApiUserAuthorize]
         [Route("avatar/{id}")]
         [HttpPost]
         public ActionResult UpdateProductAvatar(long id)
@@ -52,14 +56,15 @@ namespace TruckSaleWebApp.Areas.Admin.Controllers
             return new ActionResult(() => { return _productService.UpdateProductAvatar(id, request.Files[0]); });
         }
 
+        [ApiUserAuthorize]
         [Route("manufacture/{id}/{manufactureId}")]
         [HttpPut]
         public ActionResult UpdateManufacture(long id, long manufactureId)
         {
             return new ActionResult(() => { _productService.UpdateManufacture(id, manufactureId); return null; });
         }
-        
 
+        [ApiUserAuthorize]
         public ActionResult Delete(long id)
         {
             return new ActionResult(() => { _productService.DeleteProduct(id); return null; });

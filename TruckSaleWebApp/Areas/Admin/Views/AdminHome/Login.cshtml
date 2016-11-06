@@ -1,7 +1,104 @@
-﻿
-@{
-    ViewBag.Title = "Đăng Nhập";
+﻿@{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Đăng Nhập</title>
+    <link rel="shortcut icon" href="~/Content/img/logo/icon.png" type="image/x-icon" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery-1.11.1.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/jquery.validate.min.js"></script>
+</head>
+<body> 
+    @Html.Partial("../Shared/Helper")
+    <div class="login-panel">
+        <div class="login-logo">
+            <center>
+                <h3>OTO Tải Biên Hòa</h3>
+            </center>
+        </div>
+        <div class="login-body">
+            <div class="login-title"><strong>Xin Chào</strong>, Vui lòng đăng nhập</div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="text" id="username" class="form-control" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <center><button id="btnLogin" class="btn btn-info">Log In</button></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+	    $(function () {
+	        $('body').keypress(function (e) {
+	            if (e.which == 13) {
+	                $('#btnLogin').click();
+	            }
+	        });
 
-<h2>Login</h2>
+	        $('#btnLogin').click(function () {
+
+
+	            var valid = validate();
+	            if (valid != "") {
+	                alert(valid);
+	            } else {
+	                var user = {
+	                    UserName: $('#username').val(),
+	                    Password: $('#password').val()
+	                };
+
+	                $.ajax({
+	                    url: "/api/adminuser/login",
+	                	type : "POST",
+	    				data : JSON.stringify( user),
+	    				contentType : "application/json",
+	    				success : function(data){
+	    					if(data.IsSuccess){
+	    						location.href = "/admin/adminhome/products";
+	    					} else {
+	    						showAlert("Lỗi đang nhập", data.Message);
+	    					}
+	    				}
+	                });
+	            }
+
+	        });
+
+	        function validate() {
+	            var username = $('#username').val();
+	            var pass = $('#password').val();
+	            var result = "";
+
+	            if (username.trim().length <= 0) {
+	               result += "User Name can not empty \n";
+	            }
+
+	            if (pass.trim().length <= 0) {
+	                result +=  "Password can not empty \n";
+	            }
+
+	            return result;
+	        }
+
+	    });
+    </script>
+</body>
+</html>
 

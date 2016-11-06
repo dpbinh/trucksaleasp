@@ -29,6 +29,7 @@ namespace TruckSaleWebApp
         public static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IProductService, ProductService>();
+            container.RegisterType<IUserService, UserService>();
             container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IProductGroupRepository, ProductGroupRepository>();
             container.RegisterType<IUserRepository, UserRepository>();

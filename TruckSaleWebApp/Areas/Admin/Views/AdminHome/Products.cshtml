@@ -100,7 +100,7 @@
 		}
 
 		$('#new-product-model').on('shown.bs.modal', function() {
-			$('#product-manufactor').val("");
+			$('#product-manufactor').html("");
 			$('#product-name').val("");
 			$('#product-price').val("");
 			$.get("/api/manufacture", function (data) {
@@ -113,9 +113,9 @@
 
 		$('#save-product').click(function(){
 			var product = {
-				name : $('#product-name').val(),
-				price : $('#product-price').val(),
-				groupid : $('#product-manufactor').val()
+				Name : $('#product-name').val(),
+				Price : $('#product-price').val(),
+				GroupId : $('#product-manufactor').val()
 			} ;
 			 var t = JSON.stringify({"product": product});
 			$.ajax({

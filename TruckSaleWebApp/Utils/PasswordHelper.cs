@@ -9,6 +9,7 @@ namespace TruckSaleWebApp.Utils
 {
     public static class PasswordHelper
     {
+        public static readonly int DEFAULT_PASSWORD_LENGTH = 10;
         public static string GeneratePassword(int length) //length of salt    
         {
             const string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
