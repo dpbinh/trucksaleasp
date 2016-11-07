@@ -312,13 +312,13 @@
 			$('#product-manufacture-id').html(product.Groupid);
 			$('#overall_demension').html(product.OverallDemension);
 			$('#inside_cargo_box_demension').html(product.InsideCargoBoxDemension);
-			$('#q-inside_cargo_box_demension').html(product.InsideCargoBoxDemension);
+			$('#q-inside_cargo_box_demension').html(getFirstLine(product.InsideCargoBoxDemension));
 			$('#front_rear_tread').html(product.FrontRearTread);
 			$('#wheel_base').html(product.WheelBase);
 			$('#ground_clearance').html(product.GroundClearance);
 			$('#curb_weight').html(product.CurbWeight);
 			$('#load_weight').html(product.LoadWeight);
-			$('#q-load_weight').html(product.LoadWeight);
+			$('#q-load_weight').html(getFirstLine(product.LoadWeight));
 			$('#gross_weight').html(product.GrossWeight);
 			$('#number_of_seats').html(product.NumberOfSeats);
 			$('#car_engine').html(product.CarEngine);
@@ -362,6 +362,16 @@
 		function buildResource(el, value) {
 			var tmp = $.validator.format("<p><img src='{0}' class='img-responsive' alt='' /></p>");
 			$(el).append(tmp(value.ResourcePath));
+		}
+
+		function getFirstLine(value) {
+		    if (value == "")
+		        return "";
+		    var arr = value.split("</br>");
+		    if (arr.length > 0) {
+		        return arr[0];
+		    }
+		    return value;
 		}
 	});
 </script>

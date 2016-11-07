@@ -69,6 +69,9 @@ border-top: 2px solid #FFF;
     background-size: cover;
 }
 
+.divider {
+    border-bottom: 1px solid #ddd;
+}
 .background-overlay-second-page {
     margin: 0px; 
     padding: 0px; 
@@ -79,6 +82,26 @@ border-top: 2px solid #FFF;
     height: 100%; 
     background-image: url(../js/vegas/overlays/06.png)
 }
+.section-info {
+    padding-top:30px;
+}
+
+ .wrapper-box{
+    padding: 20px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, 0.60);
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+ 
+}
+
 /* =============================================================
 CUSTOM BUTTON STYLES
 ============================================================ */

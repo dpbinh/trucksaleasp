@@ -29,5 +29,25 @@ namespace TruckSaleWebApp.Controllers
             ViewBag.Id = id;
             return View();
         }
+
+        public ActionResult Insurrance()
+        {
+            return View();
+        }
+
+        public ActionResult Repair()
+        {
+            return View();
+        }
+
+        public ActionResult InstallmentPayment()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

@@ -295,6 +295,8 @@
     <Content Include="Content\img\5.jpg" />
     <Content Include="Content\img\6.jpg" />
     <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\InstallmentPayment.jpg" />
+    <Content Include="Content\img\insurrance1.jpg" />
     <Content Include="Content\img\logo\dongfeng.png" />
     <Content Include="Content\img\logo\hino.png" />
     <Content Include="Content\img\logo\huyndai.png" />
@@ -309,6 +311,8 @@
     <Content Include="Content\img\portfolio\2.jpg" />
     <Content Include="Content\img\portfolio\3.jpg" />
     <Content Include="Content\img\products\truckdefault.jpg" />
+    <Content Include="Content\img\repair1.jpg" />
+    <Content Include="Content\img\repair2.jpg" />
     <Content Include="Content\js\animations.min.js" />
     <Content Include="Content\js\appear.min.js" />
     <Content Include="Content\js\bootstrap.js" />
@@ -430,6 +434,10 @@
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\Pricing.cshtml" />
     <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Home\Insurrance.cshtml" />
+    <Content Include="Views\Home\Repair.cshtml" />
+    <Content Include="Views\Home\InstallmentPayment.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -329,9 +329,12 @@ namespace TruckSaleWebApp.Service
                             Manufacture = product.GroupName,
                             ManufactureId = product.Groupid,
                         };
+                        pricing.Products.Add(product);
+                        result.Add(pricing);
+                    } else
+                    {
+                        pricing.Products.Add(product);
                     }
-                    pricing.Products.Add(product);
-                    result.Add(pricing);
                 }
             } catch(Exception e)
             {

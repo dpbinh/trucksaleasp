@@ -25,10 +25,10 @@
                 <li class="@Html.IsActive("Home","Pricing")">
                     @Html.ActionLink("BẢNG GIÁ", "Pricing", "Home")
                 </li>
-                <li ><a href="#">XE TRẢ GÓP</a></li>
-                <li ><a href="#">SỬA CHỮA</a></li>
-                <li ><a href="#">BẢO HIỂM</a></li>
-                <li ><a href="#">LIÊN HỆ</a></li>
+                <li >@Html.ActionLink("XE TRẢ GÓP", "InstallmentPayment", "Home")</li>
+                <li >@Html.ActionLink("SỬA CHỮA", "Repair", "Home")</li>
+                <li >@Html.ActionLink("BẢO HIỂM" , "Insurrance", "Home")</li>
+                <li >@Html.ActionLink("LIÊN HỆ" , "Contact", "Home")</li>
             </ul>
         </div>
 
