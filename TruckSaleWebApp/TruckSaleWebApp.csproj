@@ -295,6 +295,7 @@
     <Content Include="Content\img\5.jpg" />
     <Content Include="Content\img\6.jpg" />
     <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\contact1.png" />
     <Content Include="Content\img\InstallmentPayment.jpg" />
     <Content Include="Content\img\insurrance1.jpg" />
     <Content Include="Content\img\logo\dongfeng.png" />

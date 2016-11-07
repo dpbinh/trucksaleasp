@@ -257,7 +257,9 @@ font-size: 60px;
 /*============================
 PRICING SECTION STYLES
 ==============================*/
-
+.price {
+    color:#FBC02D;
+}
 #pricing {
     padding-top: 0px;
 }

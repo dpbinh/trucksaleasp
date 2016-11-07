@@ -26,7 +26,7 @@ $(function(){
 		$('#pricing-container').html("");
 		var headtmp= $.validator.format("<h3><center>{0}</center></h3>");
 		var containertmp = $.validator.format(" <div class='table-responsive'> <table class='table'>{0}</table></div>");
-		var itemtmp = $.validator.format("<tr><td width='30%'><a href='/home/product/{3}'><img class='price-logo' src='{0}'/></a></td><td width='50%'>{1}</td><td>{2}</td></tr>");
+		var itemtmp = $.validator.format("<tr><td width='30%'><a href='/home/product/{3}'><img class='price-logo' src='{0}'/></a></td><td width='50%'>{1}</td><td class='price'>{2}</td></tr>");
 
 		$.each(data.Result, function(key, pricing){
 			if(pricing.Products.length > 0){
